@@ -3,20 +3,17 @@ package cz.natix.java9.app;
 import java.io.*;
 import java.util.*;
 
+import static cz.natix.java9.app.Actions.runAll;
 import static java.lang.System.out;
 
 public class LangAndApis {
 
     public static void main(String[] args) throws Exception {
-        new LangAndApis().runAll();
+        new LangAndApis().run();
     }
 
-    void runAll() {
-        List<Runnable> actions = List.of(this::collections, this::properties, this::diamond);
-        actions.forEach(a -> {
-            a.run();
-            out.println();
-        });
+    void run() {
+        runAll(List.of(this::collections, this::properties, this::diamond));
     }
 
     void collections() {
