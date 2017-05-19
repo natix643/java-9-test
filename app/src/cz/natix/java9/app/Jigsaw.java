@@ -1,7 +1,7 @@
 package cz.natix.java9.app;
 
 import cz.natix.java9.lib.api.TimeService;
-import cz.natix.java9.lib.internal.Formatter;
+//import cz.natix.java9.lib.internal.Formatter;
 
 import java.lang.reflect.Field;
 import java.time.*;
@@ -28,7 +28,7 @@ public class Jigsaw {
 
         out.println("Kolik je v Praze hodin?");
         out.println(service.currentTime(zone, locale));
-        out.println(Formatter.format(ZonedDateTime.now(), locale));
+//        out.println(Formatter.format(ZonedDateTime.now(), locale));
     }
 
     void reflection() {
@@ -38,8 +38,8 @@ public class Jigsaw {
 
             byte[] value = (byte[]) field.get("hello");
             out.println(Arrays.toString(value));
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(out);
         }
     }
 }
