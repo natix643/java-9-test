@@ -2,6 +2,7 @@ package cz.natix.java9.app;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.*;
 
 import static cz.natix.java9.app.Actions.runAll;
 import static java.lang.System.out;
@@ -13,13 +14,26 @@ public class LangAndApis {
     }
 
     void run() {
-        runAll(List.of(this::collections, this::properties, this::diamond));
+        runAll(Map.of(
+                "collections", this::collections,
+                "streams", this::streams,
+                "properties", this::properties,
+                "diamond", this::diamond));
     }
 
     void collections() {
         Set<Integer> is = Set.of(1, 2, 3);
         out.println("Set.of " + is);
         out.println("HashSet " + new HashSet<>(is));
+    }
+
+    void streams() {
+        List<Integer> is = IntStream.rangeClosed(1, Integer.MAX_VALUE)
+                .boxed()
+                .dropWhile(n -> n < 10)
+                .takeWhile(n -> n < 20)
+                .collect(Collectors.toList());
+        System.out.println(is);
     }
 
     void properties() {
