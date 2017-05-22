@@ -17,7 +17,8 @@ public class Jigsaw {
     }
 
     void run() {
-        runAll(List.of(this::useModule, this::reflection));
+        runAll(Map.of("useModule", this::useModule,
+                "reflection", this::reflection));
     }
 
     void useModule() {
