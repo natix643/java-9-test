@@ -3,7 +3,7 @@ package cz.natix.java9.app;
 import cz.natix.java9.lib.api.TimeService;
 import cz.natix.java9.lib.internal.Formatter;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.*;
 import java.time.*;
 import java.util.*;
 
@@ -34,13 +34,18 @@ public class Jigsaw {
 
     void reflection() {
         try {
+            String s = "hello";
+
+            Method lengthMethod = String.class.getMethod("length");
+            int length = (int) lengthMethod.invoke(s);
+            out.println(length);
+
             Field field = String.class.getDeclaredField("value");
             field.setAccessible(true);
-
-            byte[] value = (byte[]) field.get("hello");
+            byte[] value = (byte[]) field.get(s);
             out.println(Arrays.toString(value));
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(out);
         }
     }
 }
